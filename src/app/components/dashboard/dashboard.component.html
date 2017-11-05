@@ -1,0 +1,77 @@
+<div>
+
+  <!-- <input [(ngModel)]="person.firstName" [ngModelOptions]="{standalone: true}">
+  <input [(ngModel)]="person.lastName" [ngModelOptions]="{standalone: true}">
+  <input [(ngModel)]="person.firstName" [ngModelOptions]="{standalone: true}"> -->
+
+  <div class="row">
+    <div class="col-sm-12">
+      <p>Aplicacion para buscar contenido en base a palabras en el API de Twitter, Todos los campos son necesarios y tiene un valor por default.</p>
+    </div>
+  </div>
+
+
+
+
+
+
+  <form class="form" name="formSearch">
+
+    <div class="row">
+      <div class="col-sm-4">
+        <label>Palabra / Hashtag</label>
+        <input [(ngModel)]="search.keyword" type="text" name="keyword" placeholder="Ejemplo: Programación / #TolucaFc "  class="form-control">
+
+      </div>
+
+      <div class="col-sm-4">
+        <label>Limite de resultados</label>
+        <input type="number" [(ngModel)]="search.limit" name="limit" class="form-control" max="100">
+
+      </div>
+
+      <div class="col-sm-4">
+
+        <div class="form-group">
+          <label for="power">Tipo de busqueda</label>
+          <select class="form-control"  [(ngModel)]="search.type" name="type">
+            <option value="mixed">Recientes y Popular</option>
+            <option value="recent">Recientes</option>
+            <option value="popular">Popular</option>
+          </select>
+        </div>
+
+
+      </div>
+    </div>
+  </form>
+  <br>
+
+  <div class="modal-footer">
+    <button type="button" name="button" class="btn btn-info" (click)="cleanForm()">Limpiar</button>
+
+    <button type="button" name="button" class="btn btn-success" (click)="sendForm()" [disabled]="search.keyword.length == 0">Buscar</button>
+  </div>
+
+
+  <div *ngFor="let status of list.statuses;">
+    <div class="card" style="width: 100%;">
+      <div class="card-block">
+        <p class="card-text">{{ status.text }}</p>
+        Favoritos: <strong>{{ status.favorite_count }}</strong>
+        Fecha: <strong>{{ status.created_at | date: 'dd/MM/yyyy' }}</strong>
+
+      </div>
+    </div>
+    <br>
+  </div>
+
+
+
+
+  <!-- <div class="row" *ngFor="let status of list.statuses; let i = index">
+  <div class="col-sm-12">
+  {{ status.text }}
+</div>
+</div> -->
+</div>
