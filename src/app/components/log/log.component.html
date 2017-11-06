@@ -1,3 +1,55 @@
-<p>
-  log works!
-</p>
+<div>
+
+
+
+  <div *ngFor="let log of list;">
+
+    <div class="card" style="width: 100%;">
+      <div class="card-block">
+
+        <h4 class="card-title">Palabra : <strong>{{ log.l_keyword }}</strong></h4>
+
+        <div class="row">
+          <div class="col-sm-6">
+            Limite de resultados: <strong>{{ log.l_limit | json }}</strong>
+
+          </div>
+          <div class="col-sm-6">
+            Tipo de busqueda:
+            <strong *ngIf="log.l_type=='mixed'">Recientes y Popular</strong>
+            <strong *ngIf="log.l_type=='recent'">Recientes</strong>
+            <strong *ngIf="log.l_type=='popular'">Popular</strong>
+          </div>
+        </div>
+
+
+
+        <hr>
+        <button type="button" class="btn btn-primary" name="button" (click)="getDetail(log); getLog()">Ver detalle</button>
+        <br>
+        <br>
+
+        <div *ngFor="let detail of log.list_detail;">
+          <div class="card" style="width: 100%;">
+            <div class="card-block">
+              <p class="card-text">{{ detail.ld_text }}</p>
+              <div class="row">
+
+                <div class="col-sm-6">
+                  Favoritos: <strong>{{ detail.ld_favorite_count}}</strong>
+                </div>
+
+                <div class="col-sm-6">
+                  Fecha :<strong>{{ detail.ld_date | date: 'dd/MM/yyyy' }}</strong>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
