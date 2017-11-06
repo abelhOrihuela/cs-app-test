@@ -24,7 +24,7 @@ export class LogComponent implements OnInit {
     var self = this;
 
 
-    db.transaction(function (tx) {
+    db.transaction((tx) => {
       tx.executeSql('SELECT * FROM LOG_DATA WHERE log_id = ?', [log.id],  function(tx, results){
         var len = results.rows.length, i;
         for (i = 0; i < len; i++){
@@ -33,7 +33,7 @@ export class LogComponent implements OnInit {
       });
     });
 
-    setTimeout(function() {
+    setTimeout(() => {
       this.flag_show=true;
   }, 100);
 
@@ -47,7 +47,7 @@ export class LogComponent implements OnInit {
     let db = openDatabase('LOG03', '1.0', 'Test DB', 2 * 1024 * 1024);
 
     db.transaction(function (tx) {
-      tx.executeSql('SELECT * FROM LOG order by id desc', [],  function(tx, results){
+      tx.executeSql('SELECT * FROM LOG order by id desc', [], (tx, results) =>{
         var len = results.rows.length, i;
 
         for (i = 0; i < len; i++){
@@ -56,7 +56,7 @@ export class LogComponent implements OnInit {
 
       });
     });
-    setTimeout(function() {
+    setTimeout(() => {
       this.flag_show=true;
   }, 100);
 

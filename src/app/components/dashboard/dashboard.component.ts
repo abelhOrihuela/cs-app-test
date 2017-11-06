@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
 
     this.id_log = (new Date().getTime())
 
-    db.transaction(function (tx) {
+    db.transaction((tx) => {
       tx.executeSql('INSERT INTO LOG (id, l_keyword, l_limit, l_type) VALUES (' + self.id_log + ', "'+self.search.keyword+'", '+ self.search.limit  +', "' + self.search.type + '")');
     });
 
@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
           }
         }
 
-        db.transaction(function (tx) {
+        db.transaction((tx) => {
           console.log(self.sql);
           tx.executeSql(self.sql);
         });
